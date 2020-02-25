@@ -1,0 +1,90 @@
+>>>>>activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/pizzaCb"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Pizza"
+        android:layout_gravity="center_horizontal"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/coffeeCb"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Coffee"
+        android:layout_gravity="center_horizontal"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/burgerCb"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Burger"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:id="@+id/orderBtn"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="Order"
+        android:layout_gravity="center_horizontal"
+        android:onClick="setOrder"/>
+
+</LinearLayout>
+
+
+>>>>>MainActivity.java
+
+package com.infosecdev.mad;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    CheckBox pizzaCb,coffeeCb,burgerCb;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void setOrder(View view) {
+
+        pizzaCb = findViewById(R.id.pizzaCb);
+        coffeeCb = findViewById(R.id.coffeeCb);
+        burgerCb = findViewById(R.id.burgerCb);
+
+            String msg = "";
+
+            if (pizzaCb.isChecked()){
+                msg = msg + "Pizza 180Rs \n";
+            }
+            if (coffeeCb.isChecked()){
+                msg = msg + "Coffee 80Rs \n";
+            }
+            if (burgerCb.isChecked()){
+                msg = msg + "Burger 120Rs";
+            }
+
+            Toast.makeText(this, "Selected Items :" + "\n" + msg, Toast.LENGTH_SHORT).show();
+
+    }
+}

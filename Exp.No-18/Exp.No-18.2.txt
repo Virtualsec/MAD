@@ -1,0 +1,68 @@
+>>>>activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/UrlEd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter URL"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="openBrowser"
+        android:text="Browse"
+        android:textSize="12dp" />
+
+</LinearLayout>
+
+>>>>>MainActivity.java
+
+
+package com.infosecdev.mad;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+
+import java.net.URI;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
+    EditText editText;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Log.d(TAG, "onCreate: Activity Created !");
+    }
+
+
+    public void openBrowser(View view) {
+
+        editText = findViewById(R.id.UrlEd);
+
+        String url = editText.getText().toString() ;
+
+        Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse(url));
+        startActivity(intent);
+    }
+}

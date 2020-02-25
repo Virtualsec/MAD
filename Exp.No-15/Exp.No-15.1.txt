@@ -1,0 +1,91 @@
+>>>>>activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Toast"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="24dp"
+        android:textSize="16dp"
+        android:padding="16dp"
+        android:onClick="setCustomToast"/>
+
+</LinearLayout>
+
+>>>>custom_toast.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#000"
+    android:padding="14dp">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message for you:"
+        android:textSize="24sp"
+        android:textColor="#FFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You have got a mail!"
+        android:textSize="14sp"
+        android:textColor="#FFF" />
+
+</LinearLayout>
+
+>>>>>MainActivity.java
+
+package com.infosecdev.mad;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void setToast(View view) {
+
+        Toast.makeText(this, "Default Toast !", Toast.LENGTH_SHORT).show();
+
+    }
+
+    public void setCustomToast(View view) {
+
+        Context context = getApplicationContext();
+        LayoutInflater inflater = getLayoutInflater();
+        View toastRoot = inflater.inflate(R.layout.custom_toast,null);
+
+        Toast toast = new Toast(context);
+
+        toast.setView(toastRoot);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.CENTER_VERTICAL,0,0);
+        toast.show();
+    }
+}
